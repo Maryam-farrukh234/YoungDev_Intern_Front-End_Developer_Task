@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Animal Adventures</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #333;
+            padding: 1em;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 15px;
+            display: block;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, padding 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #4caf4c;
+            padding: 8px 20px;
+        }
+         /* Hero Section */
+         #hero {
+             background: url('https://media.istockphoto.com/id/2153213076/photo/group-of-zebras-in-the-wilderness-at-sunset.webp?a=1&b=1&s=612x612&w=0&k=20&c=D3eYqk7LhIvMpRZZliXiirGZ8Mxy5ohjvswpJ7g6L5E=') no-repeat center center/cover;
+             color: white;
+             padding: 50px 0;
+             text-align: center;
+            }
+
+         #hero .hero-content {
+            max-width: 600px; /* Increase max-width to allow better content control */
+            margin: 0 auto;
+            text-align: center; /* Ensures text is centered inside the content */
+        }
+
+        #hero h2 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+        }
+
+        #hero p {
+            font-size: 1.2em;
+            margin-bottom: 1em;
+        }
+
+        #hero button {
+            padding: 10px 20px;
+            background-color: #4caf4c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        #hero button:hover {
+            background-color: #45a049;
+        }
+
+        /* Blog Section */
+        #blog {
+            padding: 20px 20px;
+            background-color: #f4f4f4;
+        }
+
+        #blog h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .blog-posts {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .blog-post {
+            background: white;
+            border-radius: 8px;
+            width: 300px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .blog-post img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .blog-post h3 {
+            margin: 10px;
+            font-size: 1.2em;
+        }
+
+        .blog-post p {
+            margin: 10px;
+            font-size: 0.9em;
+        }
+
+        .blog-post:hover {
+            transform: scale(1.05);
+        }
+
+       /* Gallery Section */
+       #gallery {
+            padding: 40px 20px;
+            background-color: #eaeaea;
+        }
+
+        #gallery h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 20px;
+            justify-items: center;
+        }
+
+        .gallery-container img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Featured Animal Section */
+        #featured-animal {
+            padding: 40px 20px;
+            background-color: #f4f4f4;
+            display: flex;
+            gap: 20px;
+        }
+
+        #featured-animal img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .animal-details {
+            max-width: 500px;
+        }
+
+        .animal-details h3 {
+            font-size: 2em;
+            margin-bottom: 1em;
+        }
+        .animal-details p {
+            font-size: 1.4em;
+        }
+
+        .animal-details button {
+            padding: 10px 20px;
+            background-color: #4caf4c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .animal-details button:hover {
+            background-color: #45a049;
+        }
+
+        /* Pet Animals Section */
+        #pet-animals {
+            padding: 40px 20px;
+            background-color: #f4f4f4;
+        }
+
+        #pet-animals h2 {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #pet-animals p{
+            font-size: 1.4em;
+        }
+
+        .pet-animal {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .pet-animal img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;             
+            border-radius: 8px;
+        }
+
+        .animal-info h3 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        /* Wild Animals Section */
+        #wild-animals {
+            padding: 40px 20px;
+            background-color: #eaeaea;
+        }
+
+        #wild-animals h2 {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        #wild-animals p{
+            font-size: 1.4em;
+        }
+
+        .wild-animal {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .wild-animal img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .animal-info h3 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        footer .social-icons {
+            margin-top: 20px;
+        }
+
+        footer .social-icons a {
+            margin: 0 10px;
+            font-size: 1.5em;
+            color: white;
+            transition: color 0.3s ease;
+        }
+
+        footer .social-icons a:hover {
+            color: #4caf4c;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header and Navigation Bar -->
+    <header>
+        <h1>ANIMALS ADVENTURES</h1>
+        <nav>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+<section id="hero">
+    <div class="hero-content">
+        <h2>Embark on the Wildest Animal Adventures</h2>
+        <p>Explore the fascinating world of wildlife with our immersive tours and experiences.</p>
+        <!-- Button -->
+        <button>Join Our Adventure</button>
+    </div>
+</section>
+
+     <!-- Animal Adventure Blog Section -->
+     <section id="blog">
+        <h2>Adventure Blog</h2>
+        <div class="blog-posts">
+            <article class="blog-post">
+                <img src="https://plus.unsplash.com/premium_photo-1661290309226-2e5cd5a3915f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Safari Adventure">
+                <h3>Top 5 Safari Destinations for Wildlife Lovers</h3>
+                <p>Explore the best safari locations across the globe for your next animal adventure! Discover places where you can see lions, elephants, and other iconic animals in their natural habitat.</p>
+                <p><a href="#">Read More</a></p>
+            </article>
+            <article class="blog-post">
+                <img src="https://media.istockphoto.com/id/1090121974/photo/humpback-whale-breaching-in-sea-of-cortez-mexico.webp?a=1&b=1&s=612x612&w=0&k=20&c=uRdZtKG8ierGGw2-mps3v6jCNuGH5dlqEmr7lt-vDV4=" alt="Whale Watching">
+                <h3>The Best Whale Watching Spots Across the Globe</h3>
+                <p>Whale watching is one of the most majestic experiences in nature. Find out the best destinations to encounter these ocean giants up close and personal!</p>
+                <p><a href="#">Read More</a></p>
+            </article>
+            <article class="blog-post">
+                <img src="https://plus.unsplash.com/premium_photo-1673288455700-77c2708f1e46?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGFtYXpvbiUyMHJhaW5mb3Jlc3R8ZW58MHx8MHx8fDA%3D" alt="Forest Trekking">
+                <h3>Exploring the Amazon Rainforest</h3>
+                <p>Join us for a thrilling trek through the Amazon rainforest, one of the most biodiverse places on Earth. Learn about the wildlife and plants that make this rainforest unique!</p>
+                <p><a href="#">Read More</a></p>
+            </article>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section id="gallery">
+        <h2>Animal Adventures Gallery</h2>
+        <div class="gallery-container">
+            <img src="https://plus.unsplash.com/premium_photo-1664302684037-85879958e242?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8bGlvbiUyMHNhZmFyaXxlbnwwfHwwfHx8MA%3D%3D" alt="Lion Safari">
+            <img src="https://plus.unsplash.com/premium_photo-1724654643848-ab19f6ec1c79?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZG9scGhpbiUyMGRpdmluZ3xlbnwwfHwwfHx8MA%3D%3D" alt="Dolphin Diving">
+            <img src="https://plus.unsplash.com/premium_photo-1698524852430-6a9654e26940?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZWFnbGUlMjBmbGlnaHR8ZW58MHx8MHx8fDA%3D" alt="Eagle Flight">
+           
+        </div>
+        <br> <br> 
+        <div class="gallery-container">
+            <img src="https://plus.unsplash.com/premium_photo-1664302716901-63777e888686?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8R2lyYWZmZSUyMFRyZWtraW5nfGVufDB8fDB8fHww" alt="Giraffe Trekking">
+            <img src="https://media.istockphoto.com/id/941009200/photo/red-deer-stag-in-lush-green-fairytale-growth-concept-foggy-forest-landscape-image.webp?a=1&b=1&s=612x612&w=0&k=20&c=4EYNapap1Jdd6jCo36eAodn-RnYggLAg67gpt0-9JrI=" alt="Deer">
+            <img src="https://media.istockphoto.com/id/1413079298/photo/full-length-of-woman-embracing-horse-while-standing-on-field-during-sunset.webp?a=1&b=1&s=612x612&w=0&k=20&c=sy4TqXkVxJZ74Y37YNqds_qgKm0bE3ZJWLewLzn3q3o=" alt="Horse">
+        </div>
+    </section>
+
+    <!-- Pet Animals Section -->
+    <section id="pet-animals">
+        <h2>Pet Animals</h2>
+        <div class="pet-animal">
+            <img src="https://media.istockphoto.com/id/1149249445/photo/happy-cat-lovely-comfortable-sleeping-by-the-woman-stroking-hand-grip-at-love-to-animals.webp?a=1&b=1&s=612x612&w=0&k=20&c=aYNUwA7Q7mdBTftPFc3FYBwSUMok6QOQCE49AqLcQng=" alt="Cat">
+            <div class="animal-info">
+                <h3>Cat</h3>
+                <p>Cats are one of the most popular pet animals in the world. They are known for their independence, playful nature, and unique personalities. Cats make great companions and are easy to take care of.</p>
+            </div>
+        </div>
+
+        <div class="pet-animal">
+            <img src="https://media.istockphoto.com/id/1276788283/photo/young-woman-with-laughing-corgi-puppy-nature-background.webp?a=1&b=1&s=612x612&w=0&k=20&c=4c_kipi_BQIo7jybbIfOQ9AmJURbPWOBl7P5iNT7pnM=" alt="Dog">
+            <div class="animal-info">
+                <h3>Dog</h3>
+                <p>Dogs are loyal, friendly, and incredibly loving companions. With their different breeds and personalities, they fit into various types of households. They are also known for their high energy and need for regular exercise.</p>
+            </div>
+        </div>
+
+        <div class="pet-animal">
+            <img src="https://media.istockphoto.com/id/1683134323/photo/white-brown-baby-bunny-standing-in-the-grass-and-looking-at-the-camera-with-nature-blurred-in.webp?a=1&b=1&s=612x612&w=0&k=20&c=kMrhU1DUBwFyQ1Zbx8VkgdIw_m2874DIwPxDZrozDMk=" alt="Rabbit">
+            <div class="animal-info">
+                <h3>Rabbit</h3>
+                <p>Rabbits are cute, small, and friendly animals. They are very social and love being around people. They make wonderful pets, especially for those who live in apartments and have limited space.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wild Animals Section -->
+    <section id="wild-animals">
+        <h2>Wild Animals</h2>
+        <div class="wild-animal">
+            <img src="https://media.istockphoto.com/id/2185686652/photo/two-lion-cubs-relaxing-in-grass.webp?a=1&b=1&s=612x612&w=0&k=20&c=wxnLRJybSBT2baZU8kaj2a8k0rqpQvs-Tf0EZowcZs0=" alt="Lion">
+            <div class="animal-info">
+                <h3>Lion</h3>
+                <p>Lions are known as the kings of the jungle. They are powerful predators that live in social groups called prides. Lions are native to Africa and parts of Asia, and they are admired for their strength and majesty.</p>
+            </div>
+        </div>
+
+        <div class="wild-animal">
+            <img src="https://media.istockphoto.com/id/1145539759/photo/tiger-in-warsaw-zoo.webp?a=1&b=1&s=612x612&w=0&k=20&c=KC_DeNlJW6wTcCvRIRW9uBu2rq4ARl97IYHR_4w0drA=" alt="Tiger">
+            <div class="animal-info">
+                <h3>Tiger</h3>
+                <p>Tigers are one of the largest wild cats, known for their striking orange coat with black stripes. They are solitary animals and are found in Asia's forests and jungles, where they are skilled hunters.</p>
+            </div>
+        </div>
+
+        <div class="wild-animal">
+            <img src="https://media.istockphoto.com/id/167154432/photo/an-elephant-and-its-baby-walking-in-long-grass.webp?a=1&b=1&s=612x612&w=0&k=20&c=ePy7MX_VugI_uOCvrWb_iarbxQu5wjiWA9wOTeDilsA=" alt="Elephant">
+            <div class="animal-info">
+                <h3>Elephant</h3>
+                <p>Elephants are the largest land animals. They are known for their intelligence, strong social bonds, and incredible memory. Elephants are found in Africa and Asia, and they live in herds led by the oldest female.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Animal of the Month Section -->
+    <section id="featured-animal">
+        <h2>Featured Animal of the Month</h2>
+        <div class="featured-animal">
+            <img src="https://plus.unsplash.com/premium_photo-1671976322599-63751868ad3f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c25vdyUyMExlb3BhcmR8ZW58MHx8MHx8fDA%3D" alt="Snow Leopard">
+            <div class="animal-details">
+                <h3>Snow Leopard</h3>
+                <p>The Snow Leopard is a mystical animal that roams the rugged mountains of Central Asia. Learn more about their habitat and behavior.</p>
+                <button>Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Animal Adventures | All rights reserved.</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/YourPage" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" width="30" height="30">
+            </a>
+            <a href="https://www.instagram.com/call_me_maryam_05" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="30" height="30">
+            </a>
+            <a href="https://www.twitter.com/YourPage" target="_blank">
+                <img src="https://w7.pngwing.com/pngs/425/610/png-transparent-social-media-computer-icons-youtube-twitter-company-logo-computer-wallpaper-thumbnail.png" alt="twitter" width="30" height="30">
+            </a>
+            <a href="https://www.twitter.com/YourPage" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="twitter" width="30" height="30">
+            </a>
+        </div>
+    </footer>
+</body>
+</html>
